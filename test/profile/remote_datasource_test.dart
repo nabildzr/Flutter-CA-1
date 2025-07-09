@@ -51,7 +51,6 @@ void main() async {
         fail("TIDAK MUNGKIN TERJADI - ERROR");
       } catch (e) {
         // TESTING KEBERHASILAN
-        print(e);
         expect(e, isException);
       }
     });
