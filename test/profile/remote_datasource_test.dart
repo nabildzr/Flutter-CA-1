@@ -45,8 +45,6 @@ void main() async {
 
       try {
         var response = await remoteDataSource.getUserById(1);
-        print(response.toString());
-
         fail("TIDAK MUNGKIN TERJADI - ERROR");
       } catch (e) {
         // PASTI BERHASIL
