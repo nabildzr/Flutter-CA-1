@@ -22,34 +22,36 @@ void main() async {
   );
 
   group("Profile Remote Data Source - ", () {
-    test('getUser() - BERHASIL (200)', () async {
-      //  stub -> kondisi untuk mempalsukan
-      // (proses stubbing)
-      when(
-        remoteDataSource.getUserById(1),
-      ).thenAnswer((_) async => fakeProfileModel);
+    group("getUser", () {
+      test('getUser() - BERHASIL (200)', () async {
+        //  stub -> kondisi untuk mempalsukan
+        // (proses stubbing)
+        when(
+          remoteDataSource.getUserById(1),
+        ).thenAnswer((_) async => fakeProfileModel);
 
-      try {
-        // PASTI BERHASIL
-        var response = await remoteDataSource.getUserById(1);
-        expect(response, fakeProfileModel);
-      } catch (e) {
-        fail("TIDAK MUNGKIN TERJADI - ERROR");
-      }
-    });
+        try {
+          // PASTI BERHASIL
+          var response = await remoteDataSource.getUserById(1);
+          expect(response, fakeProfileModel);
+        } catch (e) {
+          fail("TIDAK MUNGKIN TERJADI - ERROR");
+        }
+      });
 
-    test('getUser() - GAGAL', () async {
-      //  stub -> kondisi untuk mempalsukan
-      // (proses stubbing)
-      when(remoteDataSource.getUserById(1)).thenThrow(Exception());
+      test('getUser() - GAGAL', () async {
+        //  stub -> kondisi untuk mempalsukan
+        // (proses stubbing)
+        when(remoteDataSource.getUserById(1)).thenThrow(Exception());
 
-      try {
-        var response = await remoteDataSource.getUserById(1);
-        fail("TIDAK MUNGKIN TERJADI - ERROR");
-      } catch (e) {
-        // PASTI BERHASIL
-        expect(e, isException);
-      }
+        try {
+          var response = await remoteDataSource.getUserById(1);
+          fail("TIDAK MUNGKIN TERJADI - ERROR");
+        } catch (e) {
+          // PASTI BERHASIL
+          expect(e, isException);
+        }
+      });
     });
   });
 }
