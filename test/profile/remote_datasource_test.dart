@@ -23,7 +23,7 @@ void main() async {
 
   group("Profile Remote Data Source - ", () {
     group("getUser", () {
-      test('getUser() - BERHASIL (200)', () async {
+      test('BERHASIL (200)', () async {
         //  stub -> kondisi untuk mempalsukan
         // (proses stubbing)
         when(
@@ -39,7 +39,7 @@ void main() async {
         }
       });
 
-      test('getUser() - GAGAL', () async {
+      test('GAGAL', () async {
         //  stub -> kondisi untuk mempalsukan
         // (proses stubbing)
         when(remoteDataSource.getUserById(1)).thenThrow(Exception());
