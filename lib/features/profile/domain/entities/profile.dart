@@ -6,9 +6,9 @@ class Profile extends Equatable {
   final String email;
   final String fullName;
   final String profileImageUrl;
-
-  const Profile(this.id, this.email, this.fullName, this.profileImageUrl);
   
+  const Profile({required this.id, required this.email, required this.fullName, required this.profileImageUrl});
+
   @override
   List<Object?> get props => [
     id,
@@ -16,7 +16,6 @@ class Profile extends Equatable {
     fullName,
     profileImageUrl
   ];
-
 }
 
 
