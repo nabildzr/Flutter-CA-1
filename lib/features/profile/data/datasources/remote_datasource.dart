@@ -11,9 +11,14 @@ abstract class ProfileRemoteDataSoure {
 }
 
 class ProfileDataSourceImplementation extends ProfileRemoteDataSoure {
+
+  final http.Client client;
+
+  ProfileDataSourceImplementation({required this.client});
+
   @override
   Future<List<ProfileModel>> getAllUser(int page) async {
-    final response = await http.get(
+    final response = await client.get(
       Uri.parse('https://reqres.in/api/users?page=2'),
       headers: {
         'x-api-key': 'reqres-free-v1',
@@ -24,9 +29,13 @@ class ProfileDataSourceImplementation extends ProfileRemoteDataSoure {
     if (response.statusCode == 200) {
       Map<String, dynamic> dataBody = jsonDecode(response.body);
       List<dynamic> data = dataBody["data"];
+      if(data.isEmpty) {
+      throw EmptyException(message: "Empty Data - Error");
+
+      }
       return ProfileModel.fromJsonList(data);
     } else if (response.statusCode == 404) {
-      throw EmptyException(message: "Data not found - Error");
+      throw StatusCodeException(message: "Data not found - Error");
     } else {
       throw GeneralException(message: "Cannot get data.");
     }
@@ -34,7 +43,7 @@ class ProfileDataSourceImplementation extends ProfileRemoteDataSoure {
 
   @override
   Future<ProfileModel> getUserById(int id) async {
-    final response = await http.get(
+    final response = await client.get(
       Uri.parse('https://reqres.in/api/users/$id'),
       headers: {
         'Content-Type': 'application/json',
