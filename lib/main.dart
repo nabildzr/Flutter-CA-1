@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture_1/features/profile/data/datasources/remote_datasource.dart';
+import 'package:flutter_clean_architecture_1/core/routes/my_router.dart';
 
 
 
@@ -12,12 +12,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(
-        child: Text('World'),
-        ),
-      ),
+    return MaterialApp.router(
+      routerConfig: MyRouter().router, // here is defining go router
+      
     );
   }
 }

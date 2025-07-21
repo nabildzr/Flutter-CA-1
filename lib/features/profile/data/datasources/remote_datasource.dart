@@ -11,7 +11,6 @@ abstract class ProfileRemoteDataSoure {
 }
 
 class ProfileDataSourceImplementation extends ProfileRemoteDataSoure {
-
   final http.Client client;
 
   ProfileDataSourceImplementation({required this.client});
@@ -29,9 +28,8 @@ class ProfileDataSourceImplementation extends ProfileRemoteDataSoure {
     if (response.statusCode == 200) {
       Map<String, dynamic> dataBody = jsonDecode(response.body);
       List<dynamic> data = dataBody["data"];
-      if(data.isEmpty) {
-      throw EmptyException(message: "Empty Data - Error");
-
+      if (data.isEmpty) {
+        throw EmptyException(message: "Empty Data - Error");
       }
       return ProfileModel.fromJsonList(data);
     } else if (response.statusCode == 404) {

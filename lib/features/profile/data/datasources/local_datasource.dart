@@ -1,8 +1,6 @@
-import 'dart:convert';
 
 import 'package:flutter_clean_architecture_1/features/profile/data/models/profile_model.dart';
 import 'package:hive/hive.dart';
-import 'package:http/http.dart' as http;
 
 abstract class ProfileLocalDataSource {
   Future<List<ProfileModel>> getAllUser(int page);
