@@ -30,9 +30,9 @@ void main() async {
       ).thenAnswer((_) async => fakeProfileModel);
 
       try {
+        // PASTI BERHASIL
         var response = await remoteDataSource.getUserById(1);
         expect(response, fakeProfileModel);
-        // TESTING KEBERHASILAN
       } catch (e) {
         fail("TIDAK MUNGKIN TERJADI - ERROR");
       }
@@ -47,10 +47,9 @@ void main() async {
         var response = await remoteDataSource.getUserById(1);
         print(response.toString());
 
-        // TIDAK MUNGKIN TERJADI ERROR
         fail("TIDAK MUNGKIN TERJADI - ERROR");
       } catch (e) {
-        // TESTING KEBERHASILAN
+        // PASTI BERHASIL
         expect(e, isException);
       }
     });
